@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import GifSearch from "./components/GifSearch";
+import GifList from "./components/GifList";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    searchTerm: "funny", 
+  };
+
+  handleSearch = (term) => {
+    this.setState({ searchTerm: term });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Пошук гіфок</h1>
+        <GifSearch onSearch={this.handleSearch} />
+        <GifList searchTerm={this.state.searchTerm} />
+      </div>
+    );
+  }
 }
 
 export default App;
